@@ -3,9 +3,11 @@ package com.samsung.business.spaceinvaders;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.business.spaceinvaders.manager.ScoreManager;
+import com.samsung.business.spaceinvaders.manager.Singleton;
 import com.samsung.business.spaceinvaders.screens.GameOverScreen;
 import com.samsung.business.spaceinvaders.screens.GameScreen;
 import com.samsung.business.spaceinvaders.screens.MainMenuScreen;
+import com.samsung.business.spaceinvaders.screens.WinScreen;
 
 public class SpaceInvaders extends Game {
     public SpriteBatch batch;
@@ -28,11 +30,15 @@ public class SpaceInvaders extends Game {
         batch.dispose();
     }
 
-    public void gameOver() {
+    public void gameOver() {if(Singleton.getInstance().getBestScore()<score.getValue()){
+        Singleton.getInstance().putBestScore(score.getValue());}
         this.setScreen(new GameOverScreen(this));
     }
 
-    public void win() {
+    public void win() {if(Singleton.getInstance().getBestScore()<score.getValue()){
+        Singleton.getInstance().putBestScore(score.getValue());
+    }
+        this.setScreen(new WinScreen(this));
     }
 
     public ScoreManager getScore() {

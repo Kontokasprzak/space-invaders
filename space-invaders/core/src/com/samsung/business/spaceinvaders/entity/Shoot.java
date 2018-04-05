@@ -34,6 +34,8 @@ public abstract class Shoot {
     }
 
     public Rectangle position(){
-        return position;
+
+        return new Rectangle(position);
     }
+
 }
